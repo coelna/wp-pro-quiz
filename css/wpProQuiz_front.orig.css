@@ -27,15 +27,12 @@
 
 .wpProQuiz_button, .wpProQuiz_button:hover {
     margin: 0 !important;
-	margin-bottom: 6px !important;
-    /*padding: 5px 10px !important;*/
-    /*background: #f16c20 !important;*/
-	background: #76F7DF !important;
+    padding: 5px 10px !important;
+    background: #13455B !important;
     border-radius: 11px !important;
-    /*color: white !important;*/
-	color: #000000 !important;
+    color: white !important;
     font-weight: bold !important;
-    border: 1px solid ##76F7DF !important;
+    border: 1px solid #13455B !important;
     box-shadow: 1px 1px 1px #333 !important;
     text-shadow: none !important;
     filter: none !important;

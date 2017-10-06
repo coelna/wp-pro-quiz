@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: WP-Pro-Quiz v0.28\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-30 10:23+0200\n"
-"PO-Revision-Date: 2017-07-29 14:09+0000\n"
+"PO-Revision-Date: 2017-07-29 14:05+0000\n"
 "Last-Translator: root <u.pieper@soziales-berlin.de>\n"
 "Language-Team: German\n"
 "Language: de-DE\n"
@@ -962,7 +962,7 @@ msgstr "Zurück"
 # @ wp-pro-quiz
 #: lib/view/WpProQuiz_View_FrontQuiz.php:972
 msgid "Check"
-msgstr "Prüfen / نظر"
+msgstr "Prüfen"
 
 # @ wp-pro-quiz
 #: lib/view/WpProQuiz_View_FrontQuiz.php:973

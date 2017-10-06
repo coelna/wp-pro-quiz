@@ -23,7 +23,9 @@ class WpProQuiz_View_FrontQuiz extends WpProQuiz_View_View
             'start_quiz' => __('Start quiz', 'wp-pro-quiz'),
             'restart_quiz' => __('Restart quiz', 'wp-pro-quiz'),
             'quiz_summary' => __('Quiz-summary', 'wp-pro-quiz'),
-            'finish_quiz' => __('Finish quiz', 'wp-pro-quiz'),
+            //'finish_quiz' => __('Finish quiz', 'wp-pro-quiz'),
+			// Tabadul customsation
+			'finish_quiz' => __('*    ', 'wp-pro-quiz'),
             'quiz_is_loading' => __('Quiz is loading...', 'wp-pro-quiz'),
             'lock_box_msg' => __('You have already completed the quiz before. Hence you can not start it again.',
                 'wp-pro-quiz'),
@@ -157,6 +159,7 @@ class WpProQuiz_View_FrontQuiz extends WpProQuiz_View_View
                 }
             });
         </script>
+		
         <?php
     }
 
@@ -630,8 +633,7 @@ class WpProQuiz_View_FrontQuiz extends WpProQuiz_View_View
             ?>
 
             <div>
-                <input class="wpProQuiz_button" type="button" value="<?php echo $this->_buttonNames['start_quiz']; ?>"
-                       name="startQuiz">
+                <input class="wpProQuiz_button" type="button" value="<?php echo $this->_buttonNames['start_quiz']; ?>" id="tabStartQuiz" name="startQuiz" style="width:100%"/>
             </div>
         </div>
         <?php
@@ -775,16 +777,19 @@ class WpProQuiz_View_FrontQuiz extends WpProQuiz_View_View
             ?>
             <div style="margin: 10px 0px;">
                 <?php if (!$this->quiz->isBtnRestartQuizHidden()) { ?>
-                    <input class="wpProQuiz_button" type="button" name="restartQuiz"
-                           value="<?php echo $this->_buttonNames['restart_quiz']; ?>">
+				<div style="margin: 10px 0px;">
+                    <input class="wpProQuiz_button" type="button" name="restartQuiz" value="<?php echo $this->_buttonNames['restart_quiz']; ?>" onclick="tabDisplay.toggleElement('tabFooterNavigation');" style="width:100%">
+				</div>
                 <?php }
                 if (!$this->quiz->isBtnViewQuestionHidden()) { ?>
-                    <input class="wpProQuiz_button" type="button" name="reShowQuestion"
-                           value="<?php _e('View questions', 'wp-pro-quiz'); ?>">
+				<div style="margin: 10px 0px;">
+                    <input class="wpProQuiz_button" type="button" name="reShowQuestion" style="padding: 1em 2em;width:100%" value="<?php _e('View questions', 'wp-pro-quiz'); ?>">
+				</div>
                 <?php } ?>
                 <?php if ($this->quiz->isToplistActivated() && $this->quiz->getToplistDataShowIn() == WpProQuiz_Model_Quiz::QUIZ_TOPLIST_SHOW_IN_BUTTON) { ?>
-                    <input class="wpProQuiz_button" type="button" name="showToplist"
-                           value="<?php _e('Show leaderboard', 'wp-pro-quiz'); ?>">
+				<div style="margin: 10px 0px;">
+                    <input class="wpProQuiz_button" type="button" name="showToplist" value="<?php _e('Show leaderboard', 'wp-pro-quiz'); ?>">
+				</div>
                 <?php } ?>
             </div>
         </div>
@@ -1021,7 +1026,7 @@ class WpProQuiz_View_FrontQuiz extends WpProQuiz_View_View
 										<?php _e('Correct', 'wp-pro-quiz'); ?>
 									</span>
                                             <span
-                                                style="float: right;"><?php echo $question->getPoints() . ' / ' . $question->getPoints(); ?> <?php _e('Points',
+                                                style="float: right;"><?php echo $question->getPoints() . ' / ' . $question->getPoints(); ?><?php _e('Points',
                                                     'wp-pro-quiz'); ?></span>
 
                                             <div style="clear: both;"></div>
@@ -1093,20 +1098,33 @@ class WpProQuiz_View_FrontQuiz extends WpProQuiz_View_View
                                    class="wpProQuiz_button wpProQuiz_QuestionButton"
                                    style="float: left; margin-right: 10px !important;">
                         <?php } ?>
-                        <input type="button" name="back" value="<?php _e('Back', 'wp-pro-quiz'); ?>"
+<!--						
+                        <input type="button" name="back" value="04 <?php _e('Back', 'wp-pro-quiz'); ?>"
                                class="wpProQuiz_button wpProQuiz_QuestionButton"
-                               style="float: left !important; margin-right: 10px !important; display: none;">
+                               style="float: left !important; margin-right: 10px !important; display: none;background-image: url(/tabadul-customisation/left.png) !important;background-repeat: no-repeat !important; background-position: 10px 6px !important;vertical-align: middle;">
+-->
+<!-- Tabadul customisatio -->
+						<input type="button" name="back" 
+                               class="wpProQuiz_button wpProQuiz_QuestionButton"
+                               style="float: left !important; width:48%; margin-right: 10px !important; display: none;background-image: url(/tabadul-customisation/left.png) !important;background-repeat: no-repeat !important;background-position:50% 50% !important;">
+                        <input type="button" name="next" 
+                               class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right; display: none; padding: 1em 2em;width:48%;background-image: url(/tabadul-customisation/right.png) !important;background-repeat: no-repeat !important;background-position:50% 50% !important;" onclick="tabDisplay.toggleElementQuiz('tabFooterNavigation',this.value,this);return true">							   
+<!--							  
+                        <input type="image" name="back" src="/tabadul-customisation/left.png" 
+                               class="wpProQuiz_button wpProQuiz_QuestionButton"
+                               style="float: left !important; width:100%; padding 0.8em 0.8em;margin-right: 10px !important; display: none;">		
+-->							   
                         <?php if ($question->isTipEnabled()) { ?>
                             <input type="button" name="tip" value="<?php _e('Hint', 'wp-pro-quiz'); ?>"
                                    class="wpProQuiz_button wpProQuiz_QuestionButton wpProQuiz_TipButton"
                                    style="float: left !important; display: inline-block; margin-right: 10px !important;">
                         <?php } ?>
-                        <input type="button" name="check" value="<?php _e('Check', 'wp-pro-quiz'); ?>"
-                               class="wpProQuiz_button wpProQuiz_QuestionButton"
-                               style="float: right !important; margin-right: 10px !important; display: none;">
+                        <input type="button" name="check" value="<?php _e('Check', 'wp-pro-quiz'); ?>" style="padding: 1em 2em;width: 100%" class="wpProQuiz_button wpProQuiz_QuestionButton"
+                               style="float: right !important; margin-right: 10px !important; display: none;width: 100%">
+<!--							   Orig
                         <input type="button" name="next" value="<?php _e('Next', 'wp-pro-quiz'); ?>"
-                               class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right; display: none;">
-
+                               class="wpProQuiz_button wpProQuiz_QuestionButton" style="float: right; display: none; padding: 1em 2em;width:100%" onclick="tabDisplay.toggleElementQuiz('tabFooterNavigation',this.value);return true">
+-->
                         <div style="clear: both;"></div>
 
                         <?php if ($this->quiz->getQuizModus() == WpProQuiz_Model_Quiz::QUIZ_MODUS_SINGLE) { ?>
@@ -1140,6 +1158,9 @@ class WpProQuiz_View_FrontQuiz extends WpProQuiz_View_View
                 </div>
             <?php } ?>
         </div>
+		<!-- Tabadul modification start -->
+		<script>//window.onload = function () {tabInitByQuiz();tabDisplay.toggleElement('tabFooterNavigation');tabDisplay.arrangeQuizElement('wpProQuiz_text','wpProQuiz_listItem');}</script>
+	
         <?php
 
         return array('globalPoints' => $globalPoints, 'json' => $json, 'catPoints' => $catPoints);
