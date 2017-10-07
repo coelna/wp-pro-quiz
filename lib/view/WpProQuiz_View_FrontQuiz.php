@@ -95,6 +95,7 @@ class WpProQuiz_View_FrontQuiz extends WpProQuiz_View_View
             $this->showTimeLimitBox();
             $this->showCheckPageBox($question_count);
             $this->showInfoPageBox();
+            $this->showProgress($question_count);
             $this->showStartQuizBox();
             $this->showLockBox();
             $this->showLoadQuizBox();
@@ -249,6 +250,13 @@ class WpProQuiz_View_FrontQuiz extends WpProQuiz_View_View
                 });
             });
         </script>
+        <?php
+    }
+
+    private function showProgress($questionCount)
+    {
+        ?>
+        <div class="wpProQuiz_progress"><progress max="<?php echo $questionCount?>" value="0"></progress></div>
         <?php
     }
 
